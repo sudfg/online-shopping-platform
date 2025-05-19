@@ -1,17 +1,33 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { CartContext } from '../context/CartContext';
 import styles from '../styles/Cart.module.css';
 
 const Cart = () => {
   const { cartItems, addItem, removeItem, updateItemQuantity } = useContext(CartContext);
 
+  useEffect(() => {
+    const savedCartItems = JSON.parse(localStorage.getItem('cartItems'));
+    if (savedCartItems) {
+      savedCartItems.forEach(item => addItem(item));
+    }
+  }, [addItem]);
+
+  useEffect(() => {
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+  }, [cartItems]);
+
   const handleRemoveItem = (id) => {
     removeItem(id);
   };
 
   const handleQuantityChange = (id, quantity) => {
+    if (quantity < 1) {
+      quantity = 1;
+    }
     updateItemQuantity(id, quantity);
   };
+
+  const totalPrice = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
 
   return (
     <div className={styles.cart}>
@@ -40,6 +56,8 @@ const Cart = () => {
           ))}
         </ul>
       )}
+      <div className={styles.totalPrice}>Total Price: ${totalPrice.toFixed(2)}</div>
+      <button className={styles.checkoutButton}>Checkout</button>
     </div>
   );
 };
