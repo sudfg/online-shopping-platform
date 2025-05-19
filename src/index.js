@@ -5,10 +5,10 @@ import App from './App';
 import { CartProvider } from './context/CartContext';
 
 ReactDOM.render(
-  <BrowserRouter>
-    <CartProvider>
+  <CartProvider>
+    <BrowserRouter>
       <App />
-    </CartProvider>
-  </BrowserRouter>,
+    </BrowserRouter>
+  </CartProvider>,
   document.getElementById('root')
 );

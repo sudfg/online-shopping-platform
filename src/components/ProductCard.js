@@ -6,6 +6,10 @@ import styles from '../styles/ProductCard.module.css';
 const ProductCard = ({ product }) => {
   const { addItem } = useContext(CartContext);
 
+  const handleAddToCart = () => {
+    addItem(product);
+  };
+
   return (
     <div className={styles.productCard}>
       <Link to={`/product/${product.id}`}>
@@ -13,7 +17,7 @@ const ProductCard = ({ product }) => {
       </Link>
       <h2 className={styles.productTitle}>{product.title}</h2>
       <p className={styles.productPrice}>${product.price}</p>
-      <button className={styles.addToCartButton} onClick={() => addItem(product)}>Add to Cart</button>
+      <button className={styles.addToCartButton} onClick={handleAddToCart}>Add to Cart</button>
     </div>
   );
 };

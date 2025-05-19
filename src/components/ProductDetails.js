@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useParams } from 'react-router-dom';
+import { CartContext } from '../context/CartContext';
 import styles from '../styles/ProductDetails.module.css';
 
 const mockProducts = [
@@ -29,6 +30,11 @@ const mockProducts = [
 const ProductDetails = () => {
   const { id } = useParams();
   const product = mockProducts.find(product => product.id === parseInt(id, 10));
+  const { addItem } = useContext(CartContext);
+
+  const handleAddToCart = () => {
+    addItem(product);
+  };
 
   return (
     <div className={styles.productDetails}>
@@ -36,6 +42,7 @@ const ProductDetails = () => {
       <h2 className={styles.productTitle}>{product.title}</h2>
       <p className={styles.productPrice}>${product.price}</p>
       <p className={styles.productDescription}>{product.description}</p>
+      <button className={styles.addToCartButton} onClick={handleAddToCart}>Add to Cart</button>
     </div>
   );
 };
