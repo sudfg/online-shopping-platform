@@ -1,40 +1,22 @@
 import React, { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
+import { ProductsContext } from '../context/ProductsContext';
 import styles from '../styles/ProductDetails.module.css';
-
-const mockProducts = [
-  {
-    id: 1,
-    title: 'Product 1',
-    price: 29.99,
-    image: 'https://via.placeholder.com/150',
-    description: 'This is a detailed description of Product 1.'
-  },
-  {
-    id: 2,
-    title: 'Product 2',
-    price: 39.99,
-    image: 'https://via.placeholder.com/150',
-    description: 'This is a detailed description of Product 2.'
-  },
-  {
-    id: 3,
-    title: 'Product 3',
-    price: 19.99,
-    image: 'https://via.placeholder.com/150',
-    description: 'This is a detailed description of Product 3.'
-  }
-];
 
 const ProductDetails = () => {
   const { id } = useParams();
-  const product = mockProducts.find(product => product.id === parseInt(id, 10));
+  const { products } = useContext(ProductsContext);
+  const product = products.find(product => product.id === parseInt(id, 10));
   const { addItem } = useContext(CartContext);
 
   const handleAddToCart = () => {
     addItem(product);
   };
+
+  if (!product) {
+    return <p>Product not found</p>;
+  }
 
   return (
     <div className={styles.productDetails}>

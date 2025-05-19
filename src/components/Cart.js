@@ -1,9 +1,10 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { CartContext } from '../context/CartContext';
 import styles from '../styles/Cart.module.css';
 
 const Cart = () => {
   const { cartItems, addItem, removeItem, updateItemQuantity } = useContext(CartContext);
+  const [toastMessage, setToastMessage] = useState('');
 
   useEffect(() => {
     const savedCartItems = JSON.parse(localStorage.getItem('cartItems'));
@@ -27,6 +28,12 @@ const Cart = () => {
     updateItemQuantity(id, quantity);
   };
 
+  const handleAddItem = (item) => {
+    addItem(item);
+    setToastMessage(`${item.title} added to cart`);
+    setTimeout(() => setToastMessage(''), 3000);
+  };
+
   const totalPrice = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
 
   return (
@@ -42,12 +49,16 @@ const Cart = () => {
               <div className={styles.cartItemDetails}>
                 <h3 className={styles.cartItemTitle}>{item.title}</h3>
                 <p className={styles.cartItemPrice}>${item.price}</p>
-                <input
-                  type="number"
-                  value={item.quantity}
-                  onChange={(e) => handleQuantityChange(item.id, e.target.value)}
-                  className={styles.cartItemQuantity}
-                />
+                <div className={styles.quantityControls}>
+                  <button onClick={() => handleQuantityChange(item.id, item.quantity - 1)}>-</button>
+                  <input
+                    type="number"
+                    value={item.quantity}
+                    onChange={(e) => handleQuantityChange(item.id, e.target.value)}
+                    className={styles.cartItemQuantity}
+                  />
+                  <button onClick={() => handleQuantityChange(item.id, item.quantity + 1)}>+</button>
+                </div>
                 <button onClick={() => handleRemoveItem(item.id)} className={styles.removeItemButton}>
                   Remove
                 </button>
@@ -58,6 +69,7 @@ const Cart = () => {
       )}
       <div className={styles.totalPrice}>Total Price: ${totalPrice.toFixed(2)}</div>
       <button className={styles.checkoutButton}>Checkout</button>
+      {toastMessage && <div className={styles.toast}>{toastMessage}</div>}
     </div>
   );
 };

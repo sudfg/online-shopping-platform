@@ -27,3 +27,12 @@
 .navItem a:hover {
   text-decoration: underline;
 }
+
+.cartBadge {
+  background-color: #ff0000;
+  color: #fff;
+  border-radius: 50%;
+  padding: 2px 8px;
+  font-size: 0.8em;
+  margin-left: 5px;
+}
