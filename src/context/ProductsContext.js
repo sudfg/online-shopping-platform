@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useMemo } from 'react';
 
 export const ProductsContext = createContext();
 
@@ -27,10 +27,25 @@ const mockProducts = [
 ];
 
 export const ProductsProvider = ({ children }) => {
-  const [products] = useState(mockProducts);
+  const [allProducts] = useState(mockProducts);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const updateSearchTerm = (term) => {
+    setSearchTerm(term);
+  };
+
+  const filteredProducts = useMemo(() => {
+    if (!searchTerm) {
+      return allProducts;
+    }
+    return allProducts.filter(product =>
+      product.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      product.description.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  }, [allProducts, searchTerm]);
 
   return (
-    <ProductsContext.Provider value={{ products }}>
+    <ProductsContext.Provider value={{ products: filteredProducts, searchTerm, updateSearchTerm }}>
       {children}
     </ProductsContext.Provider>
   );
