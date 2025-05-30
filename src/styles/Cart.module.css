@@ -95,6 +95,44 @@
   z-index: 1000;
 }
 
+.continueShoppingButton {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 2px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.2s;
+}
+
+.continueShoppingButton:hover {
+  background-color: #45a049;
+}
+
+.proceedToCheckoutButton {
+  background-color: #008CBA;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 2px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.2s;
+}
+
+.proceedToCheckoutButton:hover {
+  background-color: #007bb5;
+}
+
 @media (max-width: 768px) {
   .cartItem {
     flex-direction: column;

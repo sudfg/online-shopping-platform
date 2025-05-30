@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { CartContext } from '../context/CartContext';
 import styles from '../styles/Cart.module.css';
+import { Link } from 'react-router-dom';
 
 const Cart = () => {
   const { cartItems, addItem, removeItem, updateItemQuantity } = useContext(CartContext);
@@ -68,7 +69,10 @@ const Cart = () => {
         </ul>
       )}
       <div className={styles.totalPrice}>Total Price: ${totalPrice.toFixed(2)}</div>
-      <button className={styles.checkoutButton}>Checkout</button>
+      <div className={styles.cartActions}>
+        <Link to="/" className={styles.continueShoppingButton}>Continue Shopping</Link>
+        <Link to="/checkout" className={styles.proceedToCheckoutButton}>Proceed to Checkout</Link>
+      </div>
       {toastMessage && <div className={styles.toast}>{toastMessage}</div>}
     </div>
   );

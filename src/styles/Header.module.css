@@ -36,3 +36,11 @@
   font-size: 0.8em;
   margin-left: 5px;
 }
+
+.navItem a.shopLink {
+  color: #4CAF50;
+}
+
+.navItem a.shopLink:hover {
+  color: #45a049;
+}

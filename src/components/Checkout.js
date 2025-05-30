@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { CartContext } from '../context/CartContext';
 import styles from '../styles/Checkout.module.css';
+import { Link } from 'react-router-dom';
 
 const Checkout = () => {
   const { cartItems, clearCart } = useContext(CartContext);
@@ -111,6 +112,7 @@ const Checkout = () => {
       <button className={styles.placeOrderButton} onClick={handlePlaceOrder}>
         Place Order
       </button>
+      <Link to="/cart" className={styles.backToCartButton}>Back to Cart</Link>
     </div>
   );
 };

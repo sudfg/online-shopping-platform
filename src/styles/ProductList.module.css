@@ -57,6 +57,15 @@
   max-width: 200px;
 }
 
+.sortDropdown {
+  padding: 10px;
+  font-size: 1em;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 200px;
+}
+
 @media (max-width: 768px) {
   .productCard {
     flex: 1 1 45%;

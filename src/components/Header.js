@@ -15,6 +15,9 @@ const Header = () => {
             <Link to="/">Home</Link>
           </li>
           <li className={styles.navItem}>
+            <Link to="/shop">Shop</Link>
+          </li>
+          <li className={styles.navItem}>
             <Link to="/cart">
               Cart
               {cartItemCount > 0 && <span className={styles.cartBadge}>{cartItemCount}</span>}
