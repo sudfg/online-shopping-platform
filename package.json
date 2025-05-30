@@ -7,7 +7,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "jest": "jest",
+    "cypress": "cypress open"
   },
   "dependencies": {
     "react": "^17.0.2",
@@ -16,7 +18,10 @@
   },
   "devDependencies": {
     "eslint": "^7.32.0",
-    "eslint-plugin-react": "^7.24.0"
+    "eslint-plugin-react": "^7.24.0",
+    "jest": "^27.0.6",
+    "@testing-library/react": "^12.1.2",
+    "cypress": "^8.3.1"
   },
   "browserslist": {
     "production": [
